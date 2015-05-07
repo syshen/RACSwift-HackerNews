@@ -8,3 +8,10 @@ And I also recommend you can visit some other articles like:
 - http://nomothetis.svbtle.com/an-introduction-to-reactivecocoa
 - http://blog.scottlogic.com/2015/04/24/first-look-reactive-cocoa-3.html
 
+
+##Build##
+
+1. Install Carthage 
+2. % carthage update
+3. Launch the project file and build
+
