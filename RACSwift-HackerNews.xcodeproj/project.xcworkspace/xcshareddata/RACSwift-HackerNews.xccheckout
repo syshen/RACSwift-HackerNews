@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>63CC8BC7-0E60-4A8F-B867-86E688BE2918</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RACSwift-HackerNews</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9AAA8DA660CF7562E12E96F258449B8163CAF863</key>
+		<string>https://github.com/syshen/RACSwift-HackerNews.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RACSwift-HackerNews.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9AAA8DA660CF7562E12E96F258449B8163CAF863</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/syshen/RACSwift-HackerNews.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9AAA8DA660CF7562E12E96F258449B8163CAF863</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9AAA8DA660CF7562E12E96F258449B8163CAF863</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RACSwift-HackerNews</string>
+		</dict>
+	</array>
+</dict>
+</plist>

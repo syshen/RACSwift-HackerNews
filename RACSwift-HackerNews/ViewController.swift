@@ -15,6 +15,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var indicator:UIActivityIndicatorView?
     @IBOutlet weak var tableView:UITableView?
     
+    var action:Action<(), [NSNumber], NSError>?
+    var cocoaAction:CocoaAction?
+    
     let client = HNClient()
     var items:[NSNumber] = []
     
@@ -24,21 +27,51 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        let refreshControl = UIRefreshControl()
         self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
-        client.topStories()
-            |> on(started: { [unowned self] in
-                self.indicator!.startAnimating()
-                }, error:  { [unowned self] error in
-                    self.indicator!.stopAnimating()
-                }, completed:  { [unowned self] in
-                    self.indicator!.stopAnimating()
+
+        self.action = Action { self.client.topStories() }
+        self.action!.executing.producer
+            |> start(next:{ x in
+                let executing = x as Bool
+                if executing  {
+                    self.indicator?.startAnimating()
+                } else {
+                    self.indicator?.stopAnimating()
                 }
-            )
-            |> start(next: { [unowned self] nums -> Void in
-            self.items = nums
-            self.tableView?.reloadData()
-        })
+            })
+        self.action!.values.observe(error: {error->() in
+            let alert = UIAlertView()
+            alert.title = "Error"
+            alert.message = "Failed due to \(error)"
+            alert.show()
+            },
+            next: { [unowned self] nums -> () in
+                self.items = nums
+                refreshControl.endRefreshing() // End refreshing when done
+                self.tableView?.reloadData()
+            })
+        self.action!.apply().start()
+  
+        self.cocoaAction = CocoaAction(self.action!, {$0 as AnyObject?})
+        refreshControl.addTarget(self.cocoaAction!, action: CocoaAction.selector, forControlEvents: .ValueChanged)
+        self.tableView!.addSubview(refreshControl)
+        
+//        client.topStories()
+//            |> on(started: { [unowned self] in
+//                self.indicator!.startAnimating()
+//                }, error:  { [unowned self] error in
+//                    self.indicator!.stopAnimating()
+//                }, completed:  { [unowned self] in
+//                    self.indicator!.stopAnimating()
+//                }
+//            )
+//            |> start(next: { [unowned self] nums -> Void in
+//            self.items = nums
+//            self.tableView?.reloadData()
+//        })
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

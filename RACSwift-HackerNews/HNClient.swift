@@ -71,7 +71,6 @@ class HNClient: NSObject {
                 "https://hacker-news.firebaseio.com/v0/item/\(identity).json"
             ).responseJSON(options: .AllowFragments,
                 completionHandler: { (_, _, JSON, error) -> Void in
-                    
                     if let error = error {
                         sendError(observer, error)
                     } else {
